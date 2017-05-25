@@ -10,7 +10,7 @@ function connect_db(){
 	mysqli_query($connection, "SET CHARACTER SET UTF8") or die("Ei saanud baasi utf-8-sse - ".mysqli_error($connection));
 }
 
-function logi(){
+function login(){
 	if (isset($_POST['user'])) {
 		include_once('vaated/galerii.html');
 	}
@@ -46,6 +46,12 @@ function logi(){
 	}
 	
 	include_once('vaated/login.html');
+}
+
+function logout(){
+	$_SESSION=array();
+	session_destroy();
+	header("Location: ?");
 }
 
 ?>

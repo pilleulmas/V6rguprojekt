@@ -45,3 +45,10 @@ border-color:#68ADF7;
 	vertical-align: bottom;
 	width: 1200px;
 }
+
+#login{
+	margin:auto;
+	width: 35%;	
+	margin-top:25px;
+	margin-bottom:25px;
+}

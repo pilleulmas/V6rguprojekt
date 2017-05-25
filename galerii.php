@@ -15,7 +15,7 @@ switch($page){
 		include('vaated/pealeht.html');
 	break;
 	case "login":
-		logi();
+		login();
 	break;
 	case "logout":
 		logout();
