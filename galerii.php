@@ -14,6 +14,9 @@ switch($page){
 	case "pealeht":
 		include('vaated/pealeht.html');
 	break;
+	case "galerii":
+		kuva_pildid();
+	break;
 	case "login":
 		login();
 	break;

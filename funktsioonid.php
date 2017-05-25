@@ -30,7 +30,7 @@ function login(){
 		  		$username = mysqli_real_escape_string($connection, $_POST["user"]);
 		  		$passw = mysqli_real_escape_string($connection, $_POST["pass"]);
 		  		
-				$query = "SELECT id FROM pulmas_galerii_users WHERE username='$username' && passw=SHA1('$passw')";
+				$query = "SELECT id FROM pulmas_galerii_users WHERE username='$username' && password=SHA1('$passw')";
 				$result = mysqli_query($connection, $query) or die("midagi läks valesti");
 			
 				$ridu = mysqli_num_rows($result);
@@ -52,6 +52,23 @@ function logout(){
 	$_SESSION=array();
 	session_destroy();
 	header("Location: ?");
+}
+
+function kuva_pildid(){
+	//Kontrollib, kas kasutaja on sisse logitud. Kui pole, suunab sisselogimise vaatesse
+	if (!empty($_SESSION['user'])) {
+		global $connection;
+		$p= mysqli_query($connection, "select distinct(category) as category from pulmas_galerii");
+		$category=array();
+		while ($r=mysqli_fetch_assoc($p)){
+			$l=mysqli_query($connection, "SELECT * FROM pulmas_galerii WHERE  category=".mysqli_real_escape_string($connection, $r['category']));
+			
+		}
+		include_once('vaated/galerii.html');
+	} else {
+		include_once 'vaated/login.html';
+	}
+	
 }
 
 ?>

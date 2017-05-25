@@ -1,0 +1,11 @@
+<?php if (!empty($category)):?>
+	<?php foreach($category as $cid=>$kategooria): ?>
+		<div class="kategooria">
+			<h5>kategooria: <?php echo $cid; ?></h5>
+			<?php foreach($kategooria as $pid=>$pilt): ?>
+				<img src="pildid/.<?php echo $pilt['link']; ?>" alt="<?php echo $pilt['title']; ?>" title="<?php echo $pilt['title']; ?>">
+				<br>
+			<?php endforeach; ?>
+		</div>
+	<?php endforeach; ?>
+<?php endif;?>
