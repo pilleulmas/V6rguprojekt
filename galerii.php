@@ -11,6 +11,9 @@ if (isset($_GET['page']) && $_GET['page']!=""){
 include_once('vaated/head.html');
 
 switch($page){
+	case "pealeht":
+		include('vaated/pealeht.html');
+	break;
 	case "login":
 		logi();
 	break;

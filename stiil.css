@@ -1,9 +1,15 @@
 body {
 	margin: 0px;
+	background-color: #EBF4FE;
+}
+
+h2, p {
+	margin:20px;
+	text-align:center;
 }
 
 #header, #wrap{
-	width: 800px;
+	width: 1200px;
 	margin:auto;
 }
 
@@ -24,16 +30,18 @@ body {
 }
 
 #header a:hover, #header li:hover {
-	background: #dec;
-	color:red;
+	background: #BADAFC;	
 }
 
 #banner {
-background: #dec;
+background: #BADAFC;
 text-align:center;
 border-width: 4px 0px;
 border-style:solid;
-border-color:#cdb;
+border-color:#68ADF7;
 }
 
-#banner img{vertical-align: bottom; width: 1000px;}
+#banner img{
+	vertical-align: bottom;
+	width: 1200px;
+}
