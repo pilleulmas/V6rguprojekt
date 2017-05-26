@@ -1,11 +1,20 @@
-<?php if (!empty($category)):?>
-	<?php foreach($category as $cid=>$kategooria): ?>
-		<div class="kategooria">
-			<h5>kategooria: <?php echo $cid; ?></h5>
-			<?php foreach($kategooria as $pid=>$pilt): ?>
-				<img src="pildid/.<?php echo $pilt['link']; ?>" alt="<?php echo $pilt['title']; ?>" title="<?php echo $pilt['title']; ?>">
-				<br>
-			<?php endforeach; ?>
+
+<?php if (!empty($kategooria)):?>
+	<h2>Kategooria: <?php echo $kategooria; ?></h2>
+	<br>
+	<?php foreach($pildid as $pid=>$pilt): ?>
+		<div class="gallery">
+			<a target="_blank" href="pildid/<?php echo $pilt['link']; ?>">
+				<img src="pildid/<?php echo $pilt['link']; ?>" alt="<?php echo $pilt['title']; ?>" width="300" height="200">
+			</a>
+		<div class="desc">Autor: <?php echo $pilt['user_id']; ?></div>
 		</div>
+	
 	<?php endforeach; ?>
+	<br>
+	<?php if (!empty($_SESSION['user'])): ?> 
+	<h2>Kategooria: <?php echo $kategooria; ?></h2>
+	<?php else:?>
+	<h2>Soovin pilte hinnata/lisada!</h2>
+	<?php endif;?>
 <?php endif;?>

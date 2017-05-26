@@ -54,20 +54,15 @@ function logout(){
 	header("Location: ?");
 }
 
-function kuva_pildid(){
-	//Kontrollib, kas kasutaja on sisse logitud. Kui pole, suunab sisselogimise vaatesse
-	if (!empty($_SESSION['user'])) {
-		global $connection;
-		$p= mysqli_query($connection, "select distinct(category) as category from pulmas_galerii");
-		$category=array();
-		while ($r=mysqli_fetch_assoc($p)){
-			$l=mysqli_query($connection, "SELECT * FROM pulmas_galerii WHERE  category=".mysqli_real_escape_string($connection, $r['category']));
-			
-		}
-		include_once('vaated/galerii.html');
-	} else {
-		include_once 'vaated/login.html';
+function kuva_pildid($kategooria){
+	global $connection;
+	$pildid=array();
+	if ($kategooria=="kõik"){
+		$pildid=mysqli_query($connection, "SELECT * FROM pulmas_galerii");
+	} else{
+		$pildid=mysqli_query($connection, "SELECT * FROM pulmas_galerii WHERE category='".$kategooria."'");
 	}
+	include_once('vaated/galerii.html');
 	
 }
 

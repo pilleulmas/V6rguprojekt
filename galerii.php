@@ -15,7 +15,16 @@ switch($page){
 		include('vaated/pealeht.html');
 	break;
 	case "galerii":
-		kuva_pildid();
+		kuva_pildid('kõik');
+	break;
+	case "loodus":
+		kuva_pildid('loodus');
+	break;
+	case "makro":
+		kuva_pildid('makro');
+	break;
+	case "tehnika":
+		kuva_pildid('tehnika');
 	break;
 	case "login":
 		login();
