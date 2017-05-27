@@ -57,8 +57,8 @@ function logout(){
 function kuva_pildid($kategooria){
 	global $connection;
 	$pildid=array();
-	if ($kategooria==''){
-		$category='kõik';
+	if ($kategooria=='koik'){
+		$category='k&#245;ik';
 		$pildid=mysqli_query($connection, "SELECT * FROM pulmas_galerii");
 	} else {
 		$category=$kategooria;
@@ -126,6 +126,12 @@ function upload($title){
 	} else {
 		return "";
 	}
+}
+
+if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['annanPunkti'])){punkt($pilt['id'], $pilt['votes']);}
+function punkt($pildi_id, $h22led){
+	global $connection;
+	mysqli_query($connection, "UPDATE pulmas_galerii SET votes=".$h22led++." WHERE id=".$pildi_id."");
 }
 
 

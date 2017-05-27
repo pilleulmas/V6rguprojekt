@@ -17,8 +17,11 @@
 				  <a href="?page=tehnika">Tehnika</a>
 				</div>
 			</div>
+			<?php if (empty($_SESSION['user'])): ?>
 			<li><a href="?page=login">Logi sisse</a></li>
+			<?php else: ?>
 			<li><a href="?page=logout">Logi välja</a></li>
+			<?php endif ?>
 		</ul>
 	</div>
 	<div id="banner">

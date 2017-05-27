@@ -33,6 +33,10 @@ h2, p {
 	background: #BADAFC;	
 }
 
+#lisanPildi {
+	position: relative;
+}
+
 #banner {
 background: #BADAFC;
 text-align:center;
@@ -46,7 +50,7 @@ border-color:#68ADF7;
 	width: 1200px;
 }
 
-#login{
+#vorm{
 	margin:auto;
 	width: 35%;	
 	margin-top:25px;
@@ -68,10 +72,10 @@ border-color:#68ADF7;
 }
 
 .pilt {
-    margin: 5px;
+    margin: 22px;
     border: 1px solid #ccc;
     float: left;
-    width: 180px;
+    width: 220px;
 }
 .galerii {
 	text-align:center;

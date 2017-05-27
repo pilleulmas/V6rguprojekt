@@ -1,4 +1,3 @@
-
 <?php if (!empty($kategooria)):?>
 	<h2>Kategooria: <?php echo $category; ?></h2>
 	<br>
@@ -8,15 +7,27 @@
 			<a target="_blank" href="pildid/<?php echo $pilt['link']; ?>">
 				<img src="pildid/<?php echo $pilt['link']; ?>" alt="<?php echo $pilt['title']; ?>" width="300" height="200">
 			</a>
-		<div class="desc">Autor: <?php echo $pilt['user_id']; ?></div>
+		<div class="desc">Autor: <?php echo $pilt['user_id']; ?>
+			<br/>
+			Punkte: <?php echo $pilt['votes']; ?>
+			<?php if (!empty($_SESSION['user'])): ?> 
+			<br/>
+				<form action="galerii.php" method="post">
+				<input type="submit" name="annanPunkti" value="Annan punkti!" />
+				</form>
+			<?php endif;?>
+		</div>
+		
 		</div>
 	
 	<?php endforeach; ?>
 	</div>
-	<br>
+	<br/>
 	<?php if (!empty($_SESSION['user'])): ?> 
-	<h2><a href="?page=lisa">Lisan pildi</a></h2>
+	<br/>
+	<h2><a class="lisanPildi" href="?page=lisa">Lisan pildi</a></h2>
 	<?php else:?>
-	<h2><a href="?page=login">Soovin pilte hinnata/lisada!</a></h2>
+	<br/>
+	<h2><a class="lisanPildi" href="?page=login">Soovin pilte hinnata/lisada!</a></h2>
 	<?php endif;?>
 <?php endif;?>

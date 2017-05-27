@@ -4,18 +4,19 @@ session_start();
 connect_db();
 
 $page="pealeht";
+include_once('vaated/head.html');
+
 if (isset($_GET['page']) && $_GET['page']!=""){
 	$page=htmlspecialchars($_GET['page']);
 }
 
-include_once('vaated/head.html');
 
 switch($page){
 	case "pealeht":
 		include('vaated/pealeht.html');
 	break;
 	case "galerii":
-		kuva_pildid('');
+		kuva_pildid('koik');
 	break;
 	case "loodus":
 		kuva_pildid('loodus');
@@ -36,9 +37,10 @@ switch($page){
 		lisa_pilt($_SESSION['user']);
 	break;
 	default:
-		include_once('vaated/algus.html');
+		include_once('vaated/pealeht.html');
 	break;
 }
+
 
 include_once('vaated/foot.html');
 
