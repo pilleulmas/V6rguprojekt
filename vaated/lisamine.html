@@ -1,0 +1,14 @@
+<form action="?page=lisa" method="POST" enctype="multipart/form-data">
+	<select name="category">
+	<option value="loodus">Loodus</option>
+	<option value="makro">Makro</option>
+	<option value="tehnika">Tehnika</option>
+	</select>
+	Foto: <input type="file" name="title"/><br/>
+	<input type="submit" value="Lisa"/> 
+</form>
+<?php if (isset($errors)):?>
+	<?php foreach($errors as $error):?>
+		<div style="color:red;"><?php echo htmlspecialchars($error); ?></div>
+	<?php endforeach;?>
+<?php endif;?>

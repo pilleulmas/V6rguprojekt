@@ -1,9 +1,10 @@
 
 <?php if (!empty($kategooria)):?>
-	<h2>Kategooria: <?php echo $kategooria; ?></h2>
+	<h2>Kategooria: <?php echo $category; ?></h2>
 	<br>
+	<div class="galerii">
 	<?php foreach($pildid as $pid=>$pilt): ?>
-		<div class="gallery">
+		<div class="pilt">
 			<a target="_blank" href="pildid/<?php echo $pilt['link']; ?>">
 				<img src="pildid/<?php echo $pilt['link']; ?>" alt="<?php echo $pilt['title']; ?>" width="300" height="200">
 			</a>
@@ -11,10 +12,11 @@
 		</div>
 	
 	<?php endforeach; ?>
+	</div>
 	<br>
 	<?php if (!empty($_SESSION['user'])): ?> 
-	<h2>Kategooria: <?php echo $kategooria; ?></h2>
+	<h2><a href="?page=lisa">Lisan pildi</a></h2>
 	<?php else:?>
-	<h2>Soovin pilte hinnata/lisada!</h2>
+	<h2><a href="?page=login">Soovin pilte hinnata/lisada!</a></h2>
 	<?php endif;?>
 <?php endif;?>

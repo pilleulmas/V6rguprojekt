@@ -57,13 +57,76 @@ function logout(){
 function kuva_pildid($kategooria){
 	global $connection;
 	$pildid=array();
-	if ($kategooria=="kõik"){
+	if ($kategooria==''){
+		$category='kõik';
 		$pildid=mysqli_query($connection, "SELECT * FROM pulmas_galerii");
-	} else{
+	} else {
+		$category=$kategooria;
 		$pildid=mysqli_query($connection, "SELECT * FROM pulmas_galerii WHERE category='".$kategooria."'");
 	}
+		
 	include_once('vaated/galerii.html');
 	
 }
+
+function lisa_pilt($lisaja){
+	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+		//kui meetodiks oli POST, tuleb kontrollida, kas kõik vormiväljad olid täidetud ja tekitada vajadusel vastavaid veateateid (massiiv $errors). 
+		$errors = array();
+  	
+  		if(empty($_POST['category'])) {
+	    	$errors[] = "kategooria on puudu";
+		}
+				
+		$pilt = upload("title");
+		if ($pilt == "") {
+			$errors[] = "pilt on puudu";
+		}
+	  	if (empty($errors)) {
+	  		//Kui vigu polnud, siis üritada see pilt andmebaasitabelisse lisada. 
+	  		global $connection;
+			$user_id = "$lisaja";
+	  		$category = mysqli_real_escape_string($connection, $_POST["category"]);
+	  		$title = mysqli_real_escape_string($connection, $_POST["title"]);
+			$link = $category."/".$title;
+			$query = "INSERT INTO pulmas_galerii (user_id, category, title, link) VALUES ('$user_id', '$category', '$title', '$link')";
+			$result = mysqli_query($connection, $query) or die("midagi läks valesti");;
+		
+			//Kas pildi lisamine õnnestus või mitte, saab teada kui kontrollida mis väärtuse tagastab mysqli_insert_id funktsioon. Kui väärtus on nullist suurem, suunata kasutaja galerii vaatessse 
+			if (mysqli_insert_id($connection) > 0) {
+				header("Location: ?page=galerii");
+			}
+	  	} 
+	}
+	include_once('vaated/lisamine.html');
+}
+
+function upload($title){
+	$category = ($_POST['category']);
+	$allowedExts = array("jpg", "jpeg", "gif", "png");
+	$allowedTypes = array("image/gif", "image/jpeg", "image/png","image/pjpeg");
+	if ( in_array($_FILES[$title]["type"], $allowedTypes)
+		&& ($_FILES[$title]["size"] < 100000)) {
+    // fail õiget tüüpi ja suurusega
+		if ($_FILES[$title]["error"] > 0) {
+			$_SESSION['notices'][]= "Return Code: " . $_FILES[$title]["error"];
+			return "";
+		} else {
+      // vigu ei ole
+			if (file_exists("pildid/" .$category. $_FILES[$title]["title"])) {
+        // fail olemas ära uuesti lae, tagasta failinimi
+				$_SESSION['notices'][]= $_FILES[$title]["title"] . " juba eksisteerib. ";
+				return "pildid/" .$category.$_FILES[$title]["title"];
+			} else {
+        // kõik ok, aseta pilt
+				move_uploaded_file($_FILES[$title]["tmp_name"], "pildid/" .$category. $_FILES[$title]["title"]);
+				return "pildid/" .$category. $_FILES[$title]["title"];
+			}
+		}
+	} else {
+		return "";
+	}
+}
+
 
 ?>

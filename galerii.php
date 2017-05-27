@@ -15,7 +15,7 @@ switch($page){
 		include('vaated/pealeht.html');
 	break;
 	case "galerii":
-		kuva_pildid('kõik');
+		kuva_pildid('');
 	break;
 	case "loodus":
 		kuva_pildid('loodus');
@@ -31,6 +31,9 @@ switch($page){
 	break;
 	case "logout":
 		logout();
+	break;
+	case "lisa":
+		lisa_pilt($_SESSION['user']);
 	break;
 	default:
 		include_once('vaated/algus.html');
