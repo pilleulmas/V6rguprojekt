@@ -40,7 +40,7 @@ switch($page){
 		include_once('vaated/pealeht.html');
 	break;
 }
-
+if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['annanPunkti'])){punkt($_POST["id"]);}
 
 include_once('vaated/foot.html');
 

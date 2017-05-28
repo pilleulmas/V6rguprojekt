@@ -128,11 +128,20 @@ function upload($title){
 	}
 }
 
-if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['annanPunkti'])){punkt($pilt['id'], $pilt['votes']);}
-function punkt($pildi_id, $h22led){
-	global $connection;
-	mysqli_query($connection, "UPDATE pulmas_galerii SET votes=".$h22led++." WHERE id=".$pildi_id."");
-}
+function punkt($pildi_id){
+	//if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['annanPunkti'])){punkt($_POST["id"]);}
 
+	global $connection;
+	$sql="UPDATE pulmas_galerii SET votes=votes+ WHERE id=".$pildi_id."";
+	//mysqli_query($connection, "UPDATE pulmas_galerii SET votes=votes+1 WHERE id=".$pildi_id."");
+	if (mysqli_query($connection, $sql)) {
+		echo "Record updated successfully";
+	} else {
+		echo "Error updating record: " . mysqli_error($connection);
+	}
+	include_once('vaated/galerii.html');
+
+}
+	
 
 ?>
