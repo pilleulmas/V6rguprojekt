@@ -136,11 +136,8 @@ function upload($title){
 }
 
 function punkt($pildi_id){
-	//if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['annanPunkti'])){punkt($_POST["id"]);}
-
 	global $connection;
-	$sql="UPDATE pulmas_galerii SET votes=votes+ WHERE id=".$pildi_id."";
-	//mysqli_query($connection, "UPDATE pulmas_galerii SET votes=votes+1 WHERE id=".$pildi_id."");
+	$sql="UPDATE pulmas_galerii SET votes=votes+1 WHERE id='".$pildi_id."'";
 	if (mysqli_query($connection, $sql)) {
 		echo "Record updated successfully";
 	} else {
