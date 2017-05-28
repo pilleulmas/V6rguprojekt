@@ -106,7 +106,7 @@ function upload($title){
 	$allowedExts = array("jpg", "jpeg", "gif", "png");
 	$allowedTypes = array("image/gif", "image/jpeg", "image/png","image/pjpeg");
 	if ( in_array($_FILES[$title]["type"], $allowedTypes)
-		&& ($_FILES[$title]["size"] < 100000)) {
+		&& ($_FILES[$title]["size"] < 10000000)) {
     // fail õiget tüüpi ja suurusega
 		if ($_FILES[$title]["error"] > 0) {
 			$_SESSION['notices'][]= "Return Code: " . $_FILES[$title]["error"];
@@ -119,12 +119,12 @@ function upload($title){
 				return "pildid/" .$category.$_FILES[$title]["title"];
 			} else {
         // kõik ok, aseta pilt
-				move_uploaded_file($_FILES[$title]["tmp_name"], "pildid/" .$category. $_FILES[$title]["title"]);
+				move_uploaded_file($_FILES[$title]["tmp_name"], "pildid/" .$category."/". $_FILES[$title]["title"]."");
 				return "pildid/" .$category. $_FILES[$title]["title"];
 			}
 		}
 	} else {
-		return "";
+		return "midagi sassis";
 	}
 }
 
