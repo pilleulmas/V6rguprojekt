@@ -60,10 +60,10 @@ function kuva_pildid($kategooria){
 	$pildid=array();
 	if ($kategooria=='koik'){
 		$category='k&#245;ik';
-		$pildid=mysqli_query($connection, "SELECT * FROM pulmas_galerii");
+		$pildid=mysqli_query($connection, "SELECT * FROM pulmas_galerii ORDER BY votes ASC");
 	} else {
 		$category=$kategooria;
-		$pildid=mysqli_query($connection, "SELECT * FROM pulmas_galerii WHERE category='".$kategooria."'");
+		$pildid=mysqli_query($connection, "SELECT * FROM pulmas_galerii WHERE category='".$kategooria."' ORDER BY votes ASC");
 	}
 		
 	include_once('vaated/galerii.html');
@@ -139,12 +139,11 @@ function punkt($pildi_id){
 	global $connection;
 	$sql="UPDATE pulmas_galerii SET votes=votes+1 WHERE id='".$pildi_id."'";
 	if (mysqli_query($connection, $sql)) {
-		echo "Record updated successfully";
+	echo "";
+	//	echo "Record updated successfully";
 	} else {
 		echo "Error updating record: " . mysqli_error($connection);
 	}
-	include_once('vaated/galerii.html');
-
 }
 	
 

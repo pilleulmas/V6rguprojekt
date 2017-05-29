@@ -43,6 +43,7 @@ text-align:center;
 border-width: 4px 0px;
 border-style:solid;
 border-color:#68ADF7;
+margin: 0px;
 }
 
 #banner img{
@@ -76,12 +77,15 @@ border-color:#68ADF7;
     border: 1px solid #ccc;
     float: left;
     width: 220px;
+	display: inline;
 }
 .galerii {
 	text-align:center;
 	border-width: 4px 0px;
 	border-style:solid;
 	border-color:#68ADF7;
+	margin: 20px 0px;
+	display: block;
 }
 .pilt:hover {
     border: 1px solid #777;
