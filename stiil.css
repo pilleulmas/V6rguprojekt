@@ -33,8 +33,15 @@ h2, p {
 	background: #BADAFC;	
 }
 
+#p2is {
+border-width: 4px 0px 8px;
+border-style:solid;
+border-color:#68ADF7;
+margin: 0px;
+}
+
 #lisanPildi {
-	position: relative;
+position: relative;
 }
 
 #banner {
@@ -75,6 +82,7 @@ margin: 0px;
 .pilt {
     margin: 22px;
     border: 1px solid #ccc;
+	border-radius: 8px;
     float: left;
     width: 220px;
 	display: inline;
@@ -85,7 +93,8 @@ margin: 0px;
 	border-style:solid;
 	border-color:#68ADF7;
 	margin: 20px 0px;
-	display: block;
+	display: flex;
+    flex-wrap: wrap;
 }
 .pilt:hover {
     border: 1px solid #777;
@@ -94,9 +103,24 @@ margin: 0px;
 .pilt img {
     width: 100%;
     height: auto;
+	border-radius: 8px;
 }
 
 .desc {
     padding: 15px;
-    text-align: center;
+}
+
+#nupp {
+background: #EBF4FE;
+border-style:solid;
+border-color:#68ADF7;
+border-width: 1px;
+border-radius: 5px;
+font-size:16px;
+}
+
+#nupp:hover {
+background: #BADAFC;
+border-style:solid;
+border-color:#68ADF7;
 }
